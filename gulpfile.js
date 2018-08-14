@@ -1,6 +1,5 @@
 var gulp = require('gulp'),
     watch = require('gulp-watch'),
-    sass = require('gulp-sass'),
     less = require('gulp-less'),
     sourcemaps = require('gulp-sourcemaps'),
     cssmin = require('gulp-minify-css'),
@@ -8,22 +7,24 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     changed  = require('gulp-changed'),
     nunjucksRender = require('gulp-nunjucks-render'),
+    htmlmin = require('gulp-htmlmin'),
     gulpif         = require('gulp-if'),
     prettify       = require('gulp-prettify'),
     frontMatter    = require('gulp-front-matter'),
     plumber     = require('gulp-plumber'),
+
     critical = require('critical').stream;
 
 
 gulp.task('critical', function () {
-    return gulp.src('index.html')
+    return gulp.src('src/index.html')
         .pipe(critical({
             base: '/',
             inline: true,
             css: ['styles/css/styles.css']
         }))
         .on('error', function(err) { log.error(err.message); })
-        .pipe(gulp.dest('./'));
+        .pipe(gulp.dest('./src'));
 });
 
 var destPath = '.';
@@ -37,7 +38,7 @@ var config = {
     },
     dest: {
         root     : destPath,
-        html     : destPath,
+        html     : destPath + '/src',
         css      : destPath + '/css',
         js       : destPath + '/js',
         img      : destPath + '/img',
@@ -65,7 +66,7 @@ function renderHtml(onlyChanged) {
     nunjucksRender.nunjucks.configure({
         watch: false,
         trimBlocks: true,
-        lstripBlocks: false
+        lstripBlocks: true
     });
 
     return gulp
@@ -78,13 +79,7 @@ function renderHtml(onlyChanged) {
         .pipe(nunjucksRender({
             path: [config.src.templates]
         }))
-        .pipe(prettify({
-            indent_size: 2,
-            wrap_attributes: 'auto', // 'force'
-            preserve_newlines: false,
-            // unformatted: [],
-            end_with_newline: true
-        }))
+        .pipe(prettify())
         .pipe(gulp.dest(config.dest.html));
 }
 
@@ -101,6 +96,11 @@ gulp.task('nunjucks:watch', function() {
     gulp.watch([
         config.src.templates + '/**/_*.html'
     ], ['nunjucks']);
+});
+gulp.task('minify', function() {
+    return gulp.src('src/*.html')
+        .pipe(htmlmin({collapseWhitespace: true}))
+        .pipe(gulp.dest(''));
 });
 
 gulp.task('scripts', function() {
