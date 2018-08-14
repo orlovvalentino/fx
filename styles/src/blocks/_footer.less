@@ -1,0 +1,72 @@
+.footer{
+    background: #f6f8fa;
+    color:#333;
+    font-size: 14px;
+    &__i{
+        .small-container();
+        padding-top: 29px;
+        padding-bottom: 48px;
+        text-align: center;
+    }
+    &__txt{
+        margin-bottom: 18px;
+        line-height: 18px;
+        a{
+            color:@orange;
+            margin: 0 7px;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+    .social{
+        margin-bottom: 14px;
+    }
+    .fb-like{
+        min-width: 80px;
+        padding-right: 9px;
+        display: inline-block;
+        vertical-align: top;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+    .twitter-btn-box{
+        display: inline-block;
+        min-width: 205px;
+        margin-right: -1px;
+    }
+    &__bottom{
+        margin-top: 33px;
+        padding-top: 32px;
+        border-top: 1px dotted #999;
+        border-bottom: 1px dotted #999;
+        margin-bottom: 35px;
+    }
+    &__payment{
+        display: flex;
+        margin-bottom: 33px;
+        flex-direction: column;
+        .responsive(@screen__l, {
+            flex-direction: row;
+        });
+        &-1{
+            width: 300px;
+            margin: 0 auto;
+            height: 40px;
+            background: url("@{img-url}sprite.png") no-repeat -2px -185px;
+        }
+        &-2{
+            width: 300px;
+            margin: 0 auto;
+            height: 40px;
+            background: url("@{img-url}sprite.png") no-repeat -302px -185px;
+        }
+    }
+    &__secure{
+        height: 32px;
+        width: 223px;
+        margin: 0 auto;
+        background: url("@{img-url}sprite.png") no-repeat -4px -233px;
+    }
+}
+

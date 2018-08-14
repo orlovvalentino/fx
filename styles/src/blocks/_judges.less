@@ -1,0 +1,73 @@
+.judges{
+    background: #fff;
+    &__i{
+        .small-container();
+        padding-top: 42px;
+        padding-bottom: 54px;
+    }
+    &__title{
+        ._title();
+        color:#333;
+        font-size: 32px;
+        margin-bottom: 22px;
+    }
+    &__txt{
+        font-size: 16px;
+        color:#333;
+        line-height: 22px;
+        margin-bottom: 27px;
+    }
+}
+.youtube {
+    background-color: #000;
+    margin-bottom: 30px;
+    position: relative;
+    padding-top: 56.25%;
+    overflow: hidden;
+    cursor: pointer;
+    img {
+        width: 100%;
+        top: -16.84%;
+        left: 0;
+        opacity: 0.7;
+        cursor: pointer;
+    }
+    .play-button {
+        cursor: pointer;
+        width: 90px;
+        height: 60px;
+        background-color: #333;
+        box-shadow: 0 0 30px rgba( 0,0,0,0.6 );
+        z-index: 1;
+        opacity: 0.8;
+        border-radius: 6px;
+        &::before {
+            content: "";
+            border-style: solid;
+            border-width: 15px 0 15px 26.0px;
+            border-color: transparent transparent transparent #fff;
+        }
+    }
+    img,
+    iframe,
+    .play-button,
+    .play-button:before {
+        position: absolute;
+    }
+    .play-button,
+    .play-button:before {
+        top: 50%;
+        left: 50%;
+        transform: translate3d( -50%, -50%, 0 );
+    }
+    iframe {
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+    }
+}
+
+
+
+
